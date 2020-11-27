@@ -7,6 +7,7 @@ public class PowerBrick : MonoBehaviour
     [SerializeField] public GameObject power;
     private int count;
     private int score;
+    [SerializeField] private int scoreToAdd = 100;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +27,7 @@ public class PowerBrick : MonoBehaviour
         if (collision.gameObject.tag == "ball")
         {
             PlayerPrefs.SetInt("count", ++count);
-            score += 100;
+            score += scoreToAdd;
             PlayerPrefs.SetInt("score", score);
             PlayerPrefs.Save();
             Instantiate(power, gameObject.transform.position, Quaternion.identity);

@@ -7,12 +7,20 @@ public class playerBuffHandler : MonoBehaviour
 	[SerializeField] GameObject ball;
 	bool flag;
 	bool gameover = false;
+	[SerializeField] int fastBrick = 10;
+	[SerializeField] int slowBrick = 4;
+
 	Vector3 normalSize;
 	bool isBigBall = false; // check if the player take power bigBall
-	// Start is called before the first frame update
-	void Start()
+    private float bigBallX;
+    private float bigBallY;
+
+    // Start is called before the first frame update
+    void Start()
     {
 		normalSize = new Vector3(ball.transform.localScale.x, ball.transform.localScale.y, ball.transform.localScale.z);
+		bigBallX = ball.transform.localScale.x * 6 / 2;
+		bigBallY = ball.transform.localScale.y * 6 / 2;
 	}
 
     // Update is called once per frame
@@ -38,7 +46,7 @@ public class playerBuffHandler : MonoBehaviour
 		if (col.gameObject.tag == "fastbrick")
 		{
 			Destroy(col.gameObject);
-			PlayerPrefs.SetInt("speed", 10);
+			PlayerPrefs.SetInt("speed", fastBrick);
 			PlayerPrefs.Save();
 			Rigidbody2D ballclone = GameObject.Find("ball").GetComponent<Rigidbody2D>();
 			ballclone.velocity = ballclone.velocity.normalized * PlayerPrefs.GetInt("speed");
@@ -46,7 +54,7 @@ public class playerBuffHandler : MonoBehaviour
 		if (col.gameObject.tag == "slowbrick")
 		{
 			Destroy(col.gameObject);
-			PlayerPrefs.SetInt("speed", 4);
+			PlayerPrefs.SetInt("speed", slowBrick);
 			PlayerPrefs.Save();
 			Rigidbody2D ballclone = GameObject.Find("ball").GetComponent<Rigidbody2D>();
 			ballclone.velocity = ballclone.velocity.normalized * PlayerPrefs.GetInt("speed");
@@ -78,7 +86,7 @@ public class playerBuffHandler : MonoBehaviour
 
 		IEnumerator bigBallTime()
 		{
-			ball.transform.localScale = new Vector2(ball.transform.localScale.x * 6 / 2, ball.transform.localScale.y * 6 / 2);	
+			ball.transform.localScale = new Vector2(bigBallX, bigBallY);	
 			//yield on a new YieldInstruction that waits for 2 seconds.
 			yield return new WaitForSeconds(2);
 			ball.transform.localScale = normalSize;

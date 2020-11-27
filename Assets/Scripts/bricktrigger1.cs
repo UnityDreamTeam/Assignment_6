@@ -3,14 +3,19 @@ using System.Collections;
 
 public class bricktrigger1 : MonoBehaviour {
 
+	private int count;
+	private int score;
+	[SerializeField] private int scoreToAdd = 100;
 	// Use this for initialization
 	void Start ()
 	{
-	
+		count = PlayerPrefs.GetInt("count");
+		score = PlayerPrefs.GetInt("score");
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 	
 	}
 
@@ -18,17 +23,18 @@ public class bricktrigger1 : MonoBehaviour {
     {
 		if (collision.gameObject.tag == "ball")
 		{
-			PlayerPrefs.SetInt("count", PlayerPrefs.GetInt("count") + 1);
-			PlayerPrefs.SetInt("score", PlayerPrefs.GetInt("score") + 100);
+			PlayerPrefs.SetInt("count", ++count);
+			score += scoreToAdd;
+			PlayerPrefs.SetInt("score", score);
 			PlayerPrefs.Save();
 			Destroy(gameObject);
 		}
 
 		if (collision.gameObject.tag == "laser")
 		{
-			Destroy(collision.gameObject);
-			PlayerPrefs.SetInt("count", PlayerPrefs.GetInt("count") + 1);
-			PlayerPrefs.SetInt("score", PlayerPrefs.GetInt("score") + 100);
+			PlayerPrefs.SetInt("count", ++count);
+			score += scoreToAdd;
+			PlayerPrefs.SetInt("score", score);
 			PlayerPrefs.Save();
 			Destroy(gameObject);
 		}
