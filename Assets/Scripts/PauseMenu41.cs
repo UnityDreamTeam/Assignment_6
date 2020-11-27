@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.SceneManagement;
 public class PauseMenu41 : MonoBehaviour {
 	
 	public bool paused=false;
@@ -83,15 +83,10 @@ public class PauseMenu41 : MonoBehaviour {
 		if(paused)
 		{
 			Time.timeScale=0;
-			
 		}
-		
 		else
 		{
-			
 			Time.timeScale=1;
-			
-			
 		}
 	}
 	
@@ -123,17 +118,15 @@ public class PauseMenu41 : MonoBehaviour {
 			PlayerPrefs.SetInt("score", 0);
 			PlayerPrefs.SetInt("pscore", 0);
 			PlayerPrefs.Save();
-			Application.LoadLevel(Application.loadedLevel);
-			
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
 		}
-		
 		
 		if(GUI.Button(new Rect(Screen.width*.7f,Screen.width*.1f,Screen.width*.15f, Screen.width*.15f),"",style4))
 		{
 			PlayerPrefs.SetInt("score", 0);
 			PlayerPrefs.SetInt("pscore", 0);
-			Application.LoadLevel(0);
-			
+			SceneManager.LoadScene(0);
 		}
 		
 	}

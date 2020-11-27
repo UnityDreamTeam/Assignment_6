@@ -6,7 +6,7 @@ public class Mover : MonoBehaviour
 {
     [Tooltip("Speed of movement, in meters per second")]
     [SerializeField] float speed = 1f;
-    [SerializeField] Rigidbody2D rb2D;
+    [SerializeField] Rigidbody2D rb2D = null;
 
     void FixedUpdate()
     {
@@ -22,7 +22,6 @@ public class Mover : MonoBehaviour
     {
         if (col.gameObject.tag == "ball")
         {
-            //col.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-2f, 2f), Random.Range(1, 4f)).normalized * PlayerPrefs.GetInt("speed");
         }
     }
 }

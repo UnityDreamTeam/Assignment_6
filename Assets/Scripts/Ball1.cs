@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Ball1 : MonoBehaviour {
 	
@@ -27,39 +28,10 @@ public class Ball1 : MonoBehaviour {
 	float y2=0;
 	AudioSource[] audioSource;
 
-	void Awake()
-	{
-		audioSource = gameObject.GetComponents<AudioSource>();
-		PlayerPrefs.SetInt("speed", 6);
-		PlayerPrefs.Save();
-	}
-
 	void Start()
 	{
-		script1 = GameObject.Find("paddle1");
-		gscore = GameObject.Find("gscore").GetComponent<Text>();
-		if (PlayerPrefs.GetInt("game") == 1)
-		{
-			script1.GetComponent<Player>().enabled = false;
-			GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-			Invoke("startpause", 1);
-			PlayerPrefs.SetInt("game", 0);
-			PlayerPrefs.Save();
-		}
-		else
-		{
-			Invoke("startpause", 0);
-		}
-	}
-
-	void startpause()
-	{
-
-		/*if(PlayerPrefs.GetInt("game")==0)
-		{
-			script1.GetComponent<Player>().enabled=true;
-			GetComponent<Rigidbody2D>().velocity=new Vector2(Random.Range(-2f,2f),Random.Range(1,4f)).normalized*PlayerPrefs.GetInt("speed");
-		}*/
+		audioSource = gameObject.GetComponents<AudioSource>();
+		setSpeed();
 	}
 
     void FixedUpdate()
@@ -93,7 +65,7 @@ public class Ball1 : MonoBehaviour {
 		}
 	}
 
-    void speed()
+    void setSpeed()
     {
         PlayerPrefs.SetInt("speed", 6);
         PlayerPrefs.Save();
@@ -156,25 +128,23 @@ public class Ball1 : MonoBehaviour {
 			{
 				Instantiate(bigball, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
 			}
-			//col.gameObject.SetActive(false);
+
 			Destroy(col.gameObject);
 			ballcount=lasercount=slowcount=fastcount=expandcount=shrinkcount=deathcount=bigcount=(int)Random.Range(0,50);
-			//rigidbody2D.velocity =  new Vector2(Random.Range(-2f,2f), Random.Range(0,4f)).normalized*speed;
 		}
 	}
 	
-	void OnGUI()
+/*	void OnGUI()
 	{
 		if(PlayerPrefs.GetInt("count")>=PlayerPrefs.GetInt("bricks"))
 		{
 			GUI.Label(new Rect(Screen.width/2-50f, Screen.height/2, 100, 10), "LEVEL "+PlayerPrefs.GetInt("level"), style1);
 			GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-			script1.GetComponent<Player>().enabled=false;
+			//script1.GetComponent<Player>().enabled=false;
 			Invoke("next", 2);
 		}
-	}
+	}*/
 
-    [System.Obsolete]
     void next()
 	{
 
@@ -191,6 +161,7 @@ public class Ball1 : MonoBehaviour {
 			PlayerPrefs.SetInt("count", 0);
 			PlayerPrefs.Save();
 		}
-		Application.LoadLevel(Application.loadedLevel);
+
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 }

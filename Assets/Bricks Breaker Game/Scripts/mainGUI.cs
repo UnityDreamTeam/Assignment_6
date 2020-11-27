@@ -1,14 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class mainGUI : MonoBehaviour {
-
-
 
 	public GUIStyle BG;
 	public GUIStyle Play;
 	public GUIStyle QuitGame;
-
 
 	void Awake()
 	{
@@ -34,16 +32,13 @@ public class mainGUI : MonoBehaviour {
 			PlayerPrefs.SetInt("score", 0);
 			PlayerPrefs.SetInt("pscore", 0);
 			PlayerPrefs.Save();
-			Application.LoadLevel(1);
+			SceneManager.LoadScene(1);
 		}
-		
-
 		
 		if (GUI.Button (new Rect (Screen.width * 0.2f, Screen.height * 0.6f, Screen.width * 0.6f, Screen.height * 0.1f), "", QuitGame)) 
 		{
 			Application.Quit();
 		}
-
 
 	}
 
