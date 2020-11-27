@@ -152,8 +152,9 @@ public class Player : MonoBehaviour {
 	}
 
 
-	//gameover gui (also attached on bottom script)
-	void OnGUI()
+    //gameover gui (also attached on bottom script)
+    [System.Obsolete]
+    void OnGUI()
 	{
 		if(gameover)
 		{
