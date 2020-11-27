@@ -14,13 +14,14 @@ public class playerBuffHandler : MonoBehaviour
 	bool isBigBall = false; // check if the player take power bigBall
     private float bigBallX;
     private float bigBallY;
+	[SerializeField] private int scale_size = 3;
 
     // Start is called before the first frame update
     void Start()
     {
 		normalSize = new Vector3(ball.transform.localScale.x, ball.transform.localScale.y, ball.transform.localScale.z);
-		bigBallX = ball.transform.localScale.x * 6 / 2;
-		bigBallY = ball.transform.localScale.y * 6 / 2;
+		bigBallX = ball.transform.localScale.x * scale_size;
+		bigBallY = ball.transform.localScale.y * scale_size;
 	}
 
     // Update is called once per frame
