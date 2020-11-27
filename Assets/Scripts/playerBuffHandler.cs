@@ -12,26 +12,26 @@ public class playerBuffHandler : MonoBehaviour
 
 	Vector3 normalSize;
 	bool isBigBall = false; // check if the player take power bigBall
-    private float bigBallX;
-    private float bigBallY;
+	private float bigBallX;
+	private float bigBallY;
 	[SerializeField] private int scale_size = 3;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+	// Start is called before the first frame update
+	void Start()
+	{
 		normalSize = new Vector3(ball.transform.localScale.x, ball.transform.localScale.y, ball.transform.localScale.z);
 		bigBallX = ball.transform.localScale.x * scale_size;
 		bigBallY = ball.transform.localScale.y * scale_size;
 	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	// Update is called once per frame
+	void Update()
+	{
 
-    private void OnTriggerEnter2D(Collider2D col)
-    {
+	}
+
+	private void OnTriggerEnter2D(Collider2D col)
+	{
 		if (col.gameObject.tag == "ballsbrick")
 		{
 			Destroy(col.gameObject);
@@ -83,11 +83,11 @@ public class playerBuffHandler : MonoBehaviour
 				StartCoroutine(bigBallTime());
 				isBigBall = true;
 			}
-        }
+		}
 
 		IEnumerator bigBallTime()
 		{
-			ball.transform.localScale = new Vector2(bigBallX, bigBallY);	
+			ball.transform.localScale = new Vector2(bigBallX, bigBallY);
 			//yield on a new YieldInstruction that waits for 2 seconds.
 			yield return new WaitForSeconds(2);
 			ball.transform.localScale = normalSize;
