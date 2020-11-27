@@ -25,11 +25,11 @@ public class Ball1 : MonoBehaviour {
 	public Text gscore;
 	float y1=0;
 	float y2=0;
-	AudioSource[] a;
+	AudioSource[] audioSource;
 
 	void Awake()
 	{
-		a = gameObject.GetComponents<AudioSource>();
+		audioSource = gameObject.GetComponents<AudioSource>();
 		PlayerPrefs.SetInt("speed", 6);
 		PlayerPrefs.Save();
 	}
@@ -78,7 +78,7 @@ public class Ball1 : MonoBehaviour {
             for (int i = 1; i <= (PlayerPrefs.GetInt("score") - PlayerPrefs.GetInt("pscore")); i++)
             {
                 PlayerPrefs.SetInt("pscore", PlayerPrefs.GetInt("pscore") + i);
-                gscore.text = PlayerPrefs.GetInt("pscore").ToString();
+                //gscore.text = PlayerPrefs.GetInt("pscore").ToString();
                 PlayerPrefs.Save();
             }
         }
@@ -105,7 +105,7 @@ public class Ball1 : MonoBehaviour {
 	{
 		if (col.gameObject.tag=="Player") 
 		{
-			a[0].Play();
+			audioSource[0].Play();
 			//GetComponent<Rigidbody2D>().velocity =  new Vector2(Random.Range(-2f,2f), Random.Range(1,4f)).normalized*PlayerPrefs.GetInt("speed");
 
 			float delta_x = col.gameObject.GetComponent<Transform>().position.x - GetComponent<Transform>().position.x;
@@ -123,7 +123,7 @@ public class Ball1 : MonoBehaviour {
 			PlayerPrefs.SetInt("score", PlayerPrefs.GetInt("score")+100);
 			PlayerPrefs.SetInt("count", PlayerPrefs.GetInt("count")+1);
 			PlayerPrefs.Save();
-			a[1].Play();
+			audioSource[1].Play();
 			if(ballcount==(int)Random.Range(0,50))
 			{
 				 Instantiate(balls, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
