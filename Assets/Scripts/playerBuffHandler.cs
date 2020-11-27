@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class playerBuffHandler : MonoBehaviour
 {
-	public GameObject ball;
-	public bool flag;
-	public bool gameover = false;
-	public GameObject big;
+	[SerializeField] GameObject ball;
+	bool flag;
+	bool gameover = false;
 	Vector3 normalSize;
 	bool isBigBall = false; // check if the player take power bigBall
 	// Start is called before the first frame update
@@ -22,16 +21,10 @@ public class playerBuffHandler : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-		
-	}
-
     private void OnTriggerEnter2D(Collider2D col)
     {
 		if (col.gameObject.tag == "ballsbrick")
 		{
-
 			Destroy(col.gameObject);
 			Instantiate(ball, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
 			PlayerPrefs.SetInt("ballcount", PlayerPrefs.GetInt("ballcount") + 1);
@@ -76,7 +69,7 @@ public class playerBuffHandler : MonoBehaviour
 		if (col.gameObject.tag == "bigball")
 		{
 			if (!isBigBall)
-            {
+			{
 				Destroy(col.gameObject);
 				StartCoroutine(bigBallTime());
 				isBigBall = true;
@@ -85,12 +78,9 @@ public class playerBuffHandler : MonoBehaviour
 
 		IEnumerator bigBallTime()
 		{
-			
-			ball.transform.localScale = new Vector2(ball.transform.localScale.x * 6 / 2, ball.transform.localScale.y * 6 / 2);
-			
+			ball.transform.localScale = new Vector2(ball.transform.localScale.x * 6 / 2, ball.transform.localScale.y * 6 / 2);	
 			//yield on a new YieldInstruction that waits for 2 seconds.
 			yield return new WaitForSeconds(2);
-
 			ball.transform.localScale = normalSize;
 			isBigBall = false;
 		}
