@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -29,6 +28,8 @@ public class Ball1 : MonoBehaviour {
 	AudioSource[] audioSource;
 	readonly int player_sound = 0;
 	readonly int brick_sound = 1;
+	readonly int amount_of_bricks_level_2 = 16;
+	readonly int amount_of_bricks_level_3 = 59;
 
 	[SerializeField] protected KeyCode keyToPress;
 	[SerializeField] int speed;
@@ -118,7 +119,7 @@ public class Ball1 : MonoBehaviour {
 			if (PlayerPrefs.GetInt("count") >= PlayerPrefs.GetInt("bricks"))
 			{
 				GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-				Invoke("next", 0.8f);// invoke the function after 2 seconds
+				Invoke("next_level", 0.8f);//Invoke the function after 2 seconds
 			}
 		}
 	}
@@ -131,13 +132,13 @@ public class Ball1 : MonoBehaviour {
 		}
 	}
 
-    void next()
+    void next_level()
 	{
-		int count_bricks = 16;
+		int count_bricks = amount_of_bricks_level_2;
 
 		if(PlayerPrefs.GetInt("level") == 2)
         {
-			count_bricks = 48;
+			count_bricks = amount_of_bricks_level_3;
 		}
 
 		PlayerPrefs.SetInt("count", 0);//Set current amount of brick to zero (at the begining of new level)
