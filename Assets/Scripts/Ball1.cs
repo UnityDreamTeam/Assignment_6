@@ -28,10 +28,27 @@ public class Ball1 : MonoBehaviour {
 	float y2=0;
 	AudioSource[] audioSource;
 
+	[SerializeField] protected KeyCode keyToPress;
+	[SerializeField] int speed;
+	readonly int fastSpeed = 8;
 	void Start()
 	{
 		audioSource = gameObject.GetComponents<AudioSource>();
-		setSpeed();
+		setSpeed(0);
+		GameObject player = GameObject.FindGameObjectWithTag("Player");
+		this.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+		this.transform.parent = player.GetComponent<Transform>();
+	}
+
+    private void Update()
+    {
+		if (Input.GetKeyDown(keyToPress))
+		{
+			this.transform.parent = null;
+			this.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+			setSpeed(speed);
+			audioSource[player_sound].enabled = true;
+		}
 	}
 
     void FixedUpdate()
@@ -65,11 +82,12 @@ public class Ball1 : MonoBehaviour {
 		}
 	}
 
-    void setSpeed()
+    void setSpeed(int speed)
     {
-        PlayerPrefs.SetInt("speed", 6);
+        PlayerPrefs.SetInt("speed", speed);
         PlayerPrefs.Save();
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
+
         rb.velocity = rb.velocity.normalized * PlayerPrefs.GetInt("speed");
     }
 
