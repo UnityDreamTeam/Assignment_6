@@ -51,6 +51,7 @@ public class Ball1 : MonoBehaviour {
 			this.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
 			setSpeed(speed);
 			audioSource[player_sound].enabled = true;
+			audioSource[brick_sound].enabled = true;
 		}
 	}
 
@@ -117,7 +118,7 @@ public class Ball1 : MonoBehaviour {
 			PlayerPrefs.SetInt("count", PlayerPrefs.GetInt("count")+1);
 			PlayerPrefs.Save();
 			audioSource[brick_sound].Play();
-			if(ballcount==(int)Random.Range(0,50))
+			/*if(ballcount==(int)Random.Range(0,50))
 			{
 				 Instantiate(balls, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
 			}
@@ -149,9 +150,9 @@ public class Ball1 : MonoBehaviour {
 			{
 				Instantiate(bigball, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
 			}
-
+			*/
 			Destroy(col.gameObject);
-			ballcount=lasercount=slowcount=fastcount=expandcount=shrinkcount=deathcount=bigcount=(int)Random.Range(0,50);
+			//ballcount=lasercount=slowcount=fastcount=expandcount=shrinkcount=deathcount=bigcount=(int)Random.Range(0,50);
 		}
 	}
 	

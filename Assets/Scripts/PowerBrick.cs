@@ -30,7 +30,7 @@ public class PowerBrick : MonoBehaviour
             score += scoreToAdd;
             PlayerPrefs.SetInt("score", score);
             PlayerPrefs.Save();
-            Instantiate(power, gameObject.transform.position, Quaternion.identity);
+            //Instantiate(power, gameObject.transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
