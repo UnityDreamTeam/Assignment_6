@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.SceneManagement;
 public class PauseMenu41 : MonoBehaviour {
 	
@@ -79,7 +78,6 @@ public class PauseMenu41 : MonoBehaviour {
 
 	void Update()
 	{
-		
 		if(paused)
 		{
 			Time.timeScale=0;
@@ -118,8 +116,8 @@ public class PauseMenu41 : MonoBehaviour {
 			PlayerPrefs.SetInt("score", 0);
 			PlayerPrefs.SetInt("pscore", 0);
 			PlayerPrefs.Save();
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		}
 		
 		if(GUI.Button(new Rect(Screen.width*.7f,Screen.width*.1f,Screen.width*.15f, Screen.width*.15f),"",style4))

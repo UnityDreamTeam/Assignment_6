@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class playerBuffHandler : MonoBehaviour
@@ -22,12 +21,6 @@ public class playerBuffHandler : MonoBehaviour
 		normalSize = new Vector3(ball.transform.localScale.x, ball.transform.localScale.y, ball.transform.localScale.z);
 		bigBallX = ball.transform.localScale.x * scale_size;
 		bigBallY = ball.transform.localScale.y * scale_size;
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
-
 	}
 
 	private void OnTriggerEnter2D(Collider2D col)
