@@ -150,7 +150,7 @@ public class Ball1 : MonoBehaviour {
 				Instantiate(bigball, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
 			}
 
-			Destroy(col.gameObject);
+			//Destroy(col.gameObject);
 			ballcount=lasercount=slowcount=fastcount=expandcount=shrinkcount=deathcount=bigcount=(int)Random.Range(0,50);
 		}
 	}
