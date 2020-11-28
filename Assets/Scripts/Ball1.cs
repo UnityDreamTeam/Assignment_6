@@ -26,12 +26,32 @@ public class Ball1 : MonoBehaviour {
 	public Text gscore;
 	float y1=0;
 	float y2=0;
-	AudioSource[] audioSource;
 
+	AudioSource[] audioSource;
+	readonly int player_sound = 0;
+	readonly int brick_sound = 1;
+
+	[SerializeField] protected KeyCode keyToPress;
+	[SerializeField] int speed;
+	readonly int fastSpeed = 8;
 	void Start()
 	{
 		audioSource = gameObject.GetComponents<AudioSource>();
-		setSpeed();
+		setSpeed(0);
+		GameObject player = GameObject.FindGameObjectWithTag("Player");
+		this.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+		this.transform.parent = player.GetComponent<Transform>();
+	}
+
+    private void Update()
+    {
+		if (Input.GetKeyDown(keyToPress))
+		{
+			this.transform.parent = null;
+			this.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+			setSpeed(speed);
+			audioSource[player_sound].enabled = true;
+		}
 	}
 
     void FixedUpdate()
@@ -65,11 +85,12 @@ public class Ball1 : MonoBehaviour {
 		}
 	}
 
-    void setSpeed()
+    void setSpeed(int speed)
     {
-        PlayerPrefs.SetInt("speed", 6);
+        PlayerPrefs.SetInt("speed", speed);
         PlayerPrefs.Save();
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
+
         rb.velocity = rb.velocity.normalized * PlayerPrefs.GetInt("speed");
     }
 
@@ -77,7 +98,7 @@ public class Ball1 : MonoBehaviour {
 	{
 		if (col.gameObject.tag=="Player") 
 		{
-			audioSource[0].Play();
+			audioSource[player_sound].Play();
 			//GetComponent<Rigidbody2D>().velocity =  new Vector2(Random.Range(-2f,2f), Random.Range(1,4f)).normalized*PlayerPrefs.GetInt("speed");
 
 			float delta_x = col.gameObject.GetComponent<Transform>().position.x - GetComponent<Transform>().position.x;
@@ -95,7 +116,7 @@ public class Ball1 : MonoBehaviour {
 			PlayerPrefs.SetInt("score", PlayerPrefs.GetInt("score")+100);
 			PlayerPrefs.SetInt("count", PlayerPrefs.GetInt("count")+1);
 			PlayerPrefs.Save();
-			audioSource[1].Play();
+			audioSource[brick_sound].Play();
 			if(ballcount==(int)Random.Range(0,50))
 			{
 				 Instantiate(balls, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
