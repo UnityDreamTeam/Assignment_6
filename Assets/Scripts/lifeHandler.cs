@@ -1,26 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class lifeHandler : MonoBehaviour
 {
     [SerializeField] int life;
     [SerializeField] string trigger;
-    
 
-        void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == trigger)
         {
-               if (other.gameObject.tag == trigger)
-               {
-                    if (life == 1)
-                    {
-                            life--;
-                            Destroy(this.gameObject);
-                    }
-                    else if (life > 1)
-                    {
-                              life--;
-                    }
-                }
+            if (life == 1)
+            {
+                PlayerPrefs.SetInt("count", PlayerPrefs.GetInt("count") + 1);
+                PlayerPrefs.Save();
+                Destroy(this.gameObject);
+            }
+
+            life--;
         }
+    }
 }

@@ -40,9 +40,4 @@ public class bricktrigger1 : MonoBehaviour {
 		}
 
 	}
-
-    void OnTriggerEnter2D(Collider2D col)
-	{
-		
-	}
 }
