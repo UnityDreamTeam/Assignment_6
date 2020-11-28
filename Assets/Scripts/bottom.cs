@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.SceneManagement;
 public class bottom : MonoBehaviour {
 
 	public GUIStyle replay;
@@ -40,14 +40,17 @@ public class bottom : MonoBehaviour {
 				PlayerPrefs.SetInt("score", 0);
 				PlayerPrefs.SetInt("pscore", 0);
 				PlayerPrefs.Save();
-				Application.LoadLevel(Application.loadedLevel);
+
+				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+				
 			}
 			if(GUI.Button(new Rect(Screen.width*.52f, Screen.height*.6f, Screen.width*.38f, Screen.height*.08f), "", home))
 			{
 				PlayerPrefs.SetInt("score", 0);
 				PlayerPrefs.SetInt("pscore", 0);
 				PlayerPrefs.Save();
-				Application.LoadLevel(0);
+
+				SceneManager.LoadScene(0);
 			}
 			if(GUI.Button(new Rect(Screen.width*.1f, Screen.height*.2f, Screen.width*.8f, Screen.height*.35f), "", finish))
 			{
