@@ -51,6 +51,7 @@ public class Ball1 : MonoBehaviour {
 			this.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
 			setSpeed(speed);
 			audioSource[player_sound].enabled = true;
+			audioSource[brick_sound].enabled = true;
 		}
 	}
 
