@@ -34,7 +34,7 @@ public class bottom : MonoBehaviour {
 			if(GUI.Button(new Rect(Screen.width*.1f, Screen.height*.6f, Screen.width*.38f, Screen.height*.08f), "", replay))
 			{
 				Time.timeScale=1;
-				PlayerPrefs.SetInt("level", 1);
+				//PlayerPrefs.SetInt("level", 1);
 				PlayerPrefs.SetInt("ballcount", 0);
 				PlayerPrefs.SetInt("count", 0);
 				PlayerPrefs.SetInt("score", 0);
