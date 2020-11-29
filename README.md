@@ -1,6 +1,6 @@
 # Assignment_6  
 
-![build pass](https://img.shields.io/badge/build-pass-brightgreen) ![game brick](https://img.shields.io/badge/game-brick-lightgrey)
+![build pass](https://img.shields.io/badge/build-pass-brightgreen) ![game brick](https://img.shields.io/badge/game-brick-lightgrey) ![platform Unity](https://img.shields.io/badge/platform-Unity-blue)
 
 
 player start to play with Enter key,
