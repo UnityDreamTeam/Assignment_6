@@ -132,7 +132,7 @@ public class Ball1 : MonoBehaviour {
 	{
 		if (PlayerPrefs.GetInt("count") >= PlayerPrefs.GetInt("bricks"))
 		{
-		  GUI.Label(new Rect(Screen.width / 2 - 50f, Screen.height / 2, 100, 10), "LEVEL " + PlayerPrefs.GetInt("level") + 1, style1);
+		  GUI.Label(new Rect(Screen.width / 2 - 50f, Screen.height / 2, 100, 10), "LEVEL " + (PlayerPrefs.GetInt("level") + 1), style1);
 		}
 	}
 
