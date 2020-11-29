@@ -30,6 +30,9 @@ public class Ball1 : MonoBehaviour {
 	readonly int brick_sound = 1;
 	readonly int amount_of_bricks_level_2 = 16;
 	readonly int amount_of_bricks_level_3 = 59;
+	readonly int amount_of_bricks_level_4 = 31;
+
+	readonly int[] amount_of_bricks_level;
 
 	[SerializeField] protected KeyCode keyToPress;
 	[SerializeField] int speed;
@@ -42,9 +45,10 @@ public class Ball1 : MonoBehaviour {
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		this.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
 		this.transform.parent = player.GetComponent<Transform>();
+		amount_of_bricks_level = new []{ amount_of_bricks_level_2, amount_of_bricks_level_3, amount_of_bricks_level_4 };
 	}
 
-    private void Update()
+    void Update()
     {
 		if (Input.GetKeyDown(keyToPress))
 		{
@@ -66,7 +70,7 @@ public class Ball1 : MonoBehaviour {
         }
 
         y1 = transform.position.y;
-        Invoke("check", 1);
+        Invoke("check_location", 1);
         if (PlayerPrefs.GetInt("score") > PlayerPrefs.GetInt("pscore"))
         {
             for (int i = 1; i <= (PlayerPrefs.GetInt("score") - PlayerPrefs.GetInt("pscore")); i++)
@@ -78,7 +82,7 @@ public class Ball1 : MonoBehaviour {
         }
     }
 
-    void check()
+    void check_location()
 	{
 		y2=transform.position.y;
 		if(y1==y2)
@@ -128,21 +132,14 @@ public class Ball1 : MonoBehaviour {
 	{
 		if (PlayerPrefs.GetInt("count") >= PlayerPrefs.GetInt("bricks"))
 		{
-		  GUI.Label(new Rect(Screen.width / 2 - 50f, Screen.height / 2, 100, 10), "LEVEL " + PlayerPrefs.GetInt("level") + 1, style1);
+		  GUI.Label(new Rect(Screen.width / 2 - 50f, Screen.height / 2, 100, 10), "LEVEL " + (PlayerPrefs.GetInt("level") + 1), style1);
 		}
 	}
 
     void next_level()
 	{
-		int count_bricks = amount_of_bricks_level_2;
-
-		if(PlayerPrefs.GetInt("level") == 2)
-        {
-		  count_bricks = amount_of_bricks_level_3;
-		}
-
+		PlayerPrefs.SetInt("bricks", amount_of_bricks_level[PlayerPrefs.GetInt("level") - 1]);
 		PlayerPrefs.SetInt("count", 0);//Set current amount of brick to zero (at the begining of new level)
-		PlayerPrefs.SetInt("bricks", count_bricks);//Set amount of bricks need to brake to win
 		PlayerPrefs.SetInt("level", SceneManager.GetActiveScene().buildIndex + 1);
 		PlayerPrefs.Save();
 
