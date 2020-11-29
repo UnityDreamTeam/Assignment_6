@@ -1,9 +1,11 @@
 # Assignment_6  
 
-![build pass](https://img.shields.io/badge/build-pass-brightgreen) ![game brick](https://img.shields.io/badge/game-brick-lightgrey) ![platform Unity](https://img.shields.io/badge/platform-Unity-blue)
+![build pass](https://img.shields.io/badge/build-pass-brightgreen) ![game brick](https://img.shields.io/badge/game-brick-lightgrey)  
+This game is an implementation of the brick breaker game as part of Game Development course.
+This project shows how to create a difficulty levels. Each level changes the following attributes:  
+- Player speed  
+- Amount of bricks
+- Toughness of bricks
 
-
-player start to play with Enter key,
-and move with the Arrow keys, 
-
+## Level 1
 ![ללא שם](https://user-images.githubusercontent.com/57867818/100528277-acb7dc80-31e3-11eb-897a-830b9d452762.png)
