@@ -12,12 +12,6 @@ public class bricktrigger1 : MonoBehaviour {
 		count = PlayerPrefs.GetInt("count");
 		score = PlayerPrefs.GetInt("score");
 	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-	
-	}
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

@@ -7,7 +7,7 @@ public class BrickInitiation1 : MonoBehaviour {
 	public Transform level2;
 	// Use this for initialization
 	void Start () {
-		Invoke("level_"+PlayerPrefs.GetInt("level"),0);
+		Invoke("level_"+PlayerPrefs.GetInt("level"), 0);
 	}
 
 	void level_1()

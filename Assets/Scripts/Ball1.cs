@@ -70,7 +70,7 @@ public class Ball1 : MonoBehaviour {
         }
 
         y1 = transform.position.y;
-        Invoke("check", 1);
+        Invoke("check_location", 1);
         if (PlayerPrefs.GetInt("score") > PlayerPrefs.GetInt("pscore"))
         {
             for (int i = 1; i <= (PlayerPrefs.GetInt("score") - PlayerPrefs.GetInt("pscore")); i++)
@@ -82,7 +82,7 @@ public class Ball1 : MonoBehaviour {
         }
     }
 
-    void check()
+    void check_location()
 	{
 		y2=transform.position.y;
 		if(y1==y2)
