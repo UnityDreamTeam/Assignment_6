@@ -37,3 +37,25 @@ The fourth and last stage is the hardest. Player will be extreme slow, bricks wi
 The bricks in the stage will be both normal and hard bricks. 
 In addition there is a **boss** brick located in the middle of the stage.  
 It is a super size brick which will be broken only after 20 hits.
+
+## Design and Code
+The mains scripts are for the player and for the ball. we added colliders and rigid body for both of them.
+### Ball's movment
+When the ball hits the player, we are calculating the new movement vector of the ball according to the absolute delta between the ball.transform.x and the player.transform.x. We then use this delta as negative x in the following manner:  
+```
+float delta_x = col.gameObject.GetComponent<Transform>().position.x - GetComponent<Transform>().position.x;
+GetComponent<Rigidbody2D>().velocity = new Vector2(-delta_x, 1).normalized * PlayerPrefs.GetInt("speed");
+```
+The movement between each level is used by an array of levels which holds the amount of bricks has to destroy in order to finish the level.
+This mechanism helps us integrate new level's easily, all you have to do is to had the new number as const and put it in the array:
+```
+void next_level()
+{
+  PlayerPrefs.SetInt("bricks", amount_of_bricks_level[PlayerPrefs.GetInt("level") - 1]);
+  PlayerPrefs.SetInt("count", 0);//Set current amount of brick to zero (at the begining of new level)
+  PlayerPrefs.SetInt("level", SceneManager.GetActiveScene().buildIndex + 1);
+  PlayerPrefs.Save();
+
+  SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+}
+```
