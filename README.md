@@ -46,7 +46,8 @@ When the ball hits the player, we are calculating the new movement vector of the
 float delta_x = col.gameObject.GetComponent<Transform>().position.x - GetComponent<Transform>().position.x;
 GetComponent<Rigidbody2D>().velocity = new Vector2(-delta_x, 1).normalized * PlayerPrefs.GetInt("speed");
 ```
-The movement between each level is used by an array of levels which holds the amount of bricks has to destroy in order to finish the level.
+### Levels
+The transition between each level is made by an array of brick's level which holds the amount of bricks the player has to destroy in order to finish the level.
 This mechanism helps us integrate new level's easily, all you have to do is to had the new number as const and put it in the array:
 ```
 void next_level()
