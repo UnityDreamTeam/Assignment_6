@@ -28,11 +28,11 @@ public class Ball1 : MonoBehaviour {
 	AudioSource[] audioSource;
 	readonly int player_sound = 0;
 	readonly int brick_sound = 1;
-	readonly int amount_of_bricks_level_2 = 16;
-	readonly int amount_of_bricks_level_3 = 59;
-	readonly int amount_of_bricks_level_4 = 31;
+	[SerializeField] int amount_of_bricks_level_2 = 16;
+	[SerializeField] int amount_of_bricks_level_3 = 59;
+	[SerializeField] int amount_of_bricks_level_4 = 31;
 
-	readonly int[] amount_of_bricks_level;
+	[SerializeField] int[] amount_of_bricks_level;
 
 	[SerializeField] protected KeyCode keyToPress;
 	[SerializeField] int speed;
