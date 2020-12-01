@@ -29,7 +29,8 @@ public class mainGUI1 : MonoBehaviour
 			PlayerPrefs.SetInt("pscore", 0);
 			PlayerPrefs.Save();
 
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+			//SceneManager.GetActiveScene().buildIndex + 1
+			SceneManager.LoadScene(1);
 		}
 
 		if (GUI.Button(new Rect(Screen.width * 0.2f, Screen.height * 0.6f, Screen.width * 0.6f, Screen.height * 0.1f), "", QuitGame))
