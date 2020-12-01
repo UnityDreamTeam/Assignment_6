@@ -21,7 +21,6 @@ public class mainGUI : MonoBehaviour {
 		
 		if (GUI.Button (new Rect (Screen.width * 0.2f, Screen.height * 0.4f, Screen.width * 0.6f, Screen.height * 0.1f), "", Play)) 
 		{
-
 			PlayerPrefs.SetInt("level" , 1);
 			PlayerPrefs.SetInt("bricks", 33);
 			PlayerPrefs.SetInt("count",0);

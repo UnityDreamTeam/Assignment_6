@@ -4,14 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class Ball1 : MonoBehaviour {
 	
-	int ballcount=0;
-	int lasercount=0;
-	int slowcount=0;
-	int fastcount=0;
-	int expandcount=0;
-	int shrinkcount=0;
-	int deathcount=0;
-	int bigcount=0;
 	public GUIStyle style1;
 	public GameObject balls;
 	public GameObject laser;
@@ -29,14 +21,21 @@ public class Ball1 : MonoBehaviour {
 	readonly int player_sound = 0;
 	readonly int brick_sound = 1;
 	[SerializeField] int amount_of_bricks_level_2 = 16;
-	[SerializeField] int amount_of_bricks_level_3 = 59;
+	[SerializeField] int amount_of_bricks_level_3 = 58;
 	[SerializeField] int amount_of_bricks_level_4 = 31;
 
 	[SerializeField] int[] amount_of_bricks_level;
 
 	[SerializeField] protected KeyCode keyToPress;
 	[SerializeField] int speed;
-	readonly int fastSpeed = 8;
+    private int screenScale = 2;
+    private string textShow = "LEVEL ";
+    private float rectWidth = 100;
+    private float rectHeight = 10;
+    private int diamondAddScroe = 1000;
+    private int brickAddScore = 100;
+    readonly int fastSpeed = 8;
+
 
 	void Start()
 	{
@@ -66,7 +65,7 @@ public class Ball1 : MonoBehaviour {
         {
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
             rb.velocity = rb.velocity.normalized * PlayerPrefs.GetInt("speed");
-            Invoke("speed", 8);
+            //Invoke("speed", 8);
         }
 
         y1 = transform.position.y;
@@ -105,21 +104,21 @@ public class Ball1 : MonoBehaviour {
 		if (col.gameObject.tag=="Player") 
 		{
 			audioSource[player_sound].Play();
-
 			float delta_x = col.gameObject.GetComponent<Transform>().position.x - GetComponent<Transform>().position.x;
 			GetComponent<Rigidbody2D>().velocity = new Vector2(-delta_x, 1).normalized * PlayerPrefs.GetInt("speed");
 		}
 		if(col.gameObject.tag=="diamond")
 		{
-			PlayerPrefs.SetInt("score", PlayerPrefs.GetInt("score")+1000);
+			PlayerPrefs.SetInt("score", PlayerPrefs.GetInt("score") + diamondAddScroe);
 			PlayerPrefs.Save();
 		}
 		if(col.gameObject.tag=="brick")
 		{
-			PlayerPrefs.SetInt("score", PlayerPrefs.GetInt("score")+100);
+			PlayerPrefs.SetInt("score", PlayerPrefs.GetInt("score")+brickAddScore);
 			PlayerPrefs.Save();
 			audioSource[brick_sound].Play();
 
+			Debug.Log(PlayerPrefs.GetInt("count") + "");
 			if (PlayerPrefs.GetInt("count") >= PlayerPrefs.GetInt("bricks"))
 			{
 				GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -132,7 +131,7 @@ public class Ball1 : MonoBehaviour {
 	{
 		if (PlayerPrefs.GetInt("count") >= PlayerPrefs.GetInt("bricks"))
 		{
-		  GUI.Label(new Rect(Screen.width / 2 - 50f, Screen.height / 2, 100, 10), "LEVEL " + (PlayerPrefs.GetInt("level") + 1), style1);
+		  GUI.Label(new Rect(Screen.width / screenScale - 50f, Screen.height / screenScale, rectWidth, rectHeight), textShow + (PlayerPrefs.GetInt("level") + 1), style1);
 		}
 	}
 
@@ -142,7 +141,6 @@ public class Ball1 : MonoBehaviour {
 		PlayerPrefs.SetInt("count", 0);//Set current amount of brick to zero (at the begining of new level)
 		PlayerPrefs.SetInt("level", SceneManager.GetActiveScene().buildIndex + 1);
 		PlayerPrefs.Save();
-
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 	}
 }
