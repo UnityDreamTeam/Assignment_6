@@ -122,7 +122,7 @@ public class Ball1 : MonoBehaviour {
 			if (PlayerPrefs.GetInt("count") >= PlayerPrefs.GetInt("bricks"))
 			{
 				GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-				Invoke("next_level", 0.8f);//Invoke the function after 2 seconds
+				//Invoke("next_level", 0.8f);//Invoke the function after 2 seconds
 			}
 		}
 	}

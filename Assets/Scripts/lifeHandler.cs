@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class lifeHandler : MonoBehaviour
 {
@@ -18,5 +19,6 @@ public class lifeHandler : MonoBehaviour
 
             life--;
         }
+        
     }
 }
