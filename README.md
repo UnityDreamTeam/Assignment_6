@@ -7,6 +7,8 @@ This project shows how to create a difficulty levels. Each level changes the fol
 - Amount of bricks
 - Toughness of bricks
 
+Link to play: https://dymgames.itch.io/brick-breaker
+
 ## Level 1
 
 ![ללא שם](https://user-images.githubusercontent.com/57867818/100528277-acb7dc80-31e3-11eb-897a-830b9d452762.png)  
